@@ -125,22 +125,23 @@ ai.predict(X_n1_1)
 ```
 
 ## Dataset Information
+![Screenshot 2024-08-19 151204](https://github.com/user-attachments/assets/9caf09c2-ee46-43f2-b64d-8b8ddea04356)
 
-Include screenshot of the dataset
+
 
 ## OUTPUT
 
 ### Training Loss Vs Iteration Plot
+![Screenshot 2024-08-19 151236](https://github.com/user-attachments/assets/cc6905ad-aa76-49c7-9020-db4571fa9b78)
 
-Include your plot here
 
 ### Test Data Root Mean Squared Error
+![Screenshot 2024-08-19 153301](https://github.com/user-attachments/assets/4da39e9f-f197-46e1-bddc-3038e03cd4b7)
 
-Find the test data root mean squared error
 
 ### New Sample Data Prediction
+![Screenshot 2024-08-19 153255](https://github.com/user-attachments/assets/71b2fc35-0cfc-41a7-8881-0f2e239bf4d2)
 
-Include your sample input and output here
 
 ## RESULT
 
