@@ -5,12 +5,10 @@
 To develop a neural network regression model for the given dataset.
 
 ## THEORY
-
-Explain the problem statement
+Neural network regression is a supervised learning method, and therefore requires a tagged dataset, which includes a label column. Because a regression model predicts a numerical value, the label column must be a numerical data type. A neural network regression model uses interconnected layers of artificial neurons to learn the mapping between input features and a continuous target variable. It leverages activation functions like ReLU to capture non-linear relationships beyond simple linear trends. Training involves minimizing the loss function (e.g., Mean Squared Error) through an optimizer (e.g., Gradient Descent). Regularization techniques like L1/L2 and dropout prevent overfitting. This approach offers flexibility and high accuracy for complex regression problems.
 
 ## Neural Network Model
-
-Include the neural network model diagram.
+<img src="image-5.png" width=400 height="300">
 
 ## DESIGN STEPS
 
@@ -43,106 +41,85 @@ Plot the performance plot
 Evaluate the model with the testing data.
 
 ## PROGRAM
-### Name: SHARAN MJ
-### Register Number:212222240097
-
-### DEPENDENCIES
+### Name:SHARAN MJ
+### Register Number: 212222240097
 ```python
-
-
-
-import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
+
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-
-
-```
-### DATA FROM GSHEETS
-```
 from google.colab import auth
 import gspread
 from google.auth import default
-import pandas as pd
 
 auth.authenticate_user()
 creds, _ = default()
 gc = gspread.authorize(creds)
 
-worksheet = gc.open('exp1').sheet1
+worksheet=gc.open('DL1').sheet1
+data1=worksheet.get_all_values()
 
-rows = worksheet.get_all_values()
-```
-### DATA PROCESSING
-```
-df = pd.DataFrame(rows[1:], columns=rows[0])
-df = df.astype({'input':'float'})
-df = df.astype({'output':'float'})
-df.head()
+dataset1=pd.DataFrame(data1[1:],columns=data1[0])
+dataset1=dataset1.astype({'x123':'float'})
+dataset1=dataset1.astype({'y123':'float'})
 
-x=df[['input']].values
-y=df[['output']].values
-x
+X12=dataset1[['x123']].values
+y12=dataset1[['y123']].values
 
+x_train1,x_test1,y_train1,y_test1=train_test_split(X12,y12,test_size=0.33,random_state=43)
 
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.33,random_state=33)
+print("Shape of x_train1:",x_train1.shape)
+print("Shape of y_train:", y_train1.shape)
 
-scalar=MinMaxScaler()
+scaler=MinMaxScaler()
 
-scalar.fit(x_train)
+scaler.fit(x_train1)
 
-x_train1=scalar.transform(x_train)
+x_train1=scaler.transform(x_train1)
 
-```
+ai_model=Sequential([
+    Dense(8,activation='relu',input_shape=[1]),
+    Dense(10,activation='relu'),
+    Dense(1)
+])
 
-### MODEL ARCHITECTURE AND TRAINING
-```
- ai=Sequential([
-    Dense (units = 8, activation = 'relu'),
-    Dense (units = 10, activation = 'relu'),
-    Dense (units = 1)])
+ai_model.compile(optimizer='rmsprop',loss='mse')
 
-ai.compile(optimizer='rmsprop',loss='mse')
-ai.fit(x_train1,y_train,epochs=2000)
-```
-### LOSS CALCULATION
+ai_model.fit(x_train1,y_train1,epochs=2000)
 
-```
-loss_df = pd.DataFrame(ai.history.history)
+loss_df=pd.DataFrame(ai_model.history.history)
 loss_df.plot()
-```
 
-### PREDICTION
-```
-X_test1 = scalar.transform(x_test)
-ai.evaluate(X_test1,y_test)
+x_test1=scaler.transform(x_test1)
 
-X_n1 = [[input("ENTER THE INPUT:")]]
-X_n1_1 = scalar.transform(X_n1)
-ai.predict(X_n1_1)
-```
+ai_model.evaluate(x_test1,y_test1)
 
+x_n1=[[6]]
+
+x_n1_1=scaler.transform(x_n1)
+
+ai_model.predict(x_n1_1)
+
+```
 ## Dataset Information
-![Screenshot 2024-08-19 151204](https://github.com/user-attachments/assets/9caf09c2-ee46-43f2-b64d-8b8ddea04356)
-
-
+<img src="image.png" width="300" height="250">
 
 ## OUTPUT
-
+![output](image-4.png)
 ### Training Loss Vs Iteration Plot
-![Screenshot 2024-08-19 151236](https://github.com/user-attachments/assets/cc6905ad-aa76-49c7-9020-db4571fa9b78)
 
+<img src="image-1.png" width="400" height="300">
 
 ### Test Data Root Mean Squared Error
-![Screenshot 2024-08-19 153301](https://github.com/user-attachments/assets/4da39e9f-f197-46e1-bddc-3038e03cd4b7)
 
+<img src="image-2.png" width="450" height="50" >
 
 ### New Sample Data Prediction
-![Screenshot 2024-08-19 153255](https://github.com/user-attachments/assets/71b2fc35-0cfc-41a7-8881-0f2e239bf4d2)
 
+<img src="https://github.com/user-attachments/assets/871cbd39-19a0-49fb-8b1b-82ed73cc6dd9" width="450" height="50">
 
 ## RESULT
 
-Include your result here
+Thus the neural network regression model for the given dataset is developed successfully!
