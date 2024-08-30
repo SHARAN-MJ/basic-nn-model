@@ -110,7 +110,8 @@ ai_model.predict(x_n1_1)
 ![Screenshot 2024-08-30 112016](https://github.com/user-attachments/assets/a2d82980-ef03-484e-a97f-c82f783afcf2)
 ### Training Loss Vs Iteration Plot
 
-![Screenshot 2024-08-30 112024](https://github.com/user-attachments/assets/ab361f20-b68b-41f2-bfc3-0788ff06a7c8)
+![Screenshot 2024-08-30 112454](https://github.com/user-attachments/assets/f7e89a03-14e9-464f-925b-db905a2a5a6a)
+
 
 
 ### Test Data Root Mean Squared Error
@@ -118,6 +119,7 @@ ai_model.predict(x_n1_1)
 ![Screenshot 2024-08-30 112032](https://github.com/user-attachments/assets/5bef9d93-32d4-4dc4-8577-fb99a25f6bab)
 ### New Sample Data Prediction
 
+![Screenshot 2024-08-30 112510](https://github.com/user-attachments/assets/40db59bb-ec7c-44a4-9571-4ec83af9c1de)
 
 
 ## RESULT
