@@ -8,7 +8,7 @@ To develop a neural network regression model for the given dataset.
 Neural network regression is a supervised learning method, and therefore requires a tagged dataset, which includes a label column. Because a regression model predicts a numerical value, the label column must be a numerical data type. A neural network regression model uses interconnected layers of artificial neurons to learn the mapping between input features and a continuous target variable. It leverages activation functions like ReLU to capture non-linear relationships beyond simple linear trends. Training involves minimizing the loss function (e.g., Mean Squared Error) through an optimizer (e.g., Gradient Descent). Regularization techniques like L1/L2 and dropout prevent overfitting. This approach offers flexibility and high accuracy for complex regression problems.
 
 ## Neural Network Model
-<img src="image-5.png" width=400 height="300">
+![Screenshot 2024-08-30 111942](https://github.com/user-attachments/assets/6e72a01e-7266-4c0e-b401-c9c113077584)
 
 ## DESIGN STEPS
 
@@ -41,8 +41,8 @@ Plot the performance plot
 Evaluate the model with the testing data.
 
 ## PROGRAM
-### Name:Sabari Akash A
-### Register Number: 212222230124
+### Name: SHARAN MJ
+### Register Number: 212222240097
 ```python
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -104,21 +104,21 @@ ai_model.predict(x_n1_1)
 
 ```
 ## Dataset Information
-<img src="image.png" width="300" height="250">
+![Screenshot 2024-08-30 112004](https://github.com/user-attachments/assets/36ddeffa-5910-405d-83ac-a2f0e08d47eb)
 
 ## OUTPUT
-![output](image-4.png)
+![Screenshot 2024-08-30 112016](https://github.com/user-attachments/assets/a2d82980-ef03-484e-a97f-c82f783afcf2)
 ### Training Loss Vs Iteration Plot
 
-<img src="image-1.png" width="400" height="300">
+![Screenshot 2024-08-30 112024](https://github.com/user-attachments/assets/ab361f20-b68b-41f2-bfc3-0788ff06a7c8)
+
 
 ### Test Data Root Mean Squared Error
 
-<img src="image-2.png" width="450" height="50" >
-
+![Screenshot 2024-08-30 112032](https://github.com/user-attachments/assets/5bef9d93-32d4-4dc4-8577-fb99a25f6bab)
 ### New Sample Data Prediction
 
-<img src="https://github.com/user-attachments/assets/871cbd39-19a0-49fb-8b1b-82ed73cc6dd9" width="450" height="50">
+
 
 ## RESULT
 
