@@ -1,125 +1,86 @@
-# Developing a Neural Network Regression Model
-
-## AIM
-
+# EX-01 Developing a Neural Network Regression Model
+### Aim:
 To develop a neural network regression model for the given dataset.
 
-## THEORY
-Neural network regression is a supervised learning method, and therefore requires a tagged dataset, which includes a label column. Because a regression model predicts a numerical value, the label column must be a numerical data type. A neural network regression model uses interconnected layers of artificial neurons to learn the mapping between input features and a continuous target variable. It leverages activation functions like ReLU to capture non-linear relationships beyond simple linear trends. Training involves minimizing the loss function (e.g., Mean Squared Error) through an optimizer (e.g., Gradient Descent). Regularization techniques like L1/L2 and dropout prevent overfitting. This approach offers flexibility and high accuracy for complex regression problems.
+### Theory:
+ - Design and implement a neural network regression model to accurately predict a continuous target variable based on a set of input features within the provided dataset. 
+ - The objective is to develop a robust and reliable predictive model that can capture complex relationships in the data, ultimately yielding accurate and precise predictions of the target variable. 
+ - The model should be trained, validated, and tested to ensure its generalization capabilities on unseen data, with an emphasis on optimizing performance metrics such as mean squared error or mean absolute error.
 
-## Neural Network Model
-<img src="image-5.png" width=400 height="300">
+### Neural Network Model:
+![image](https://github.com/user-attachments/assets/151f56b9-8129-4253-a9c3-744ab9c77732)
 
-## DESIGN STEPS
+### Design Steps:
 
-### STEP 1:
+- STEP 1:Loading the dataset
+- STEP 2:Split the dataset into training and testing
+- STEP 3:Create MinMaxScalar objects ,fit the model and transform the data.
+- STEP 4:Build the Neural Network Model and compile the model.
+- STEP 5:Train the model with the training data.
+- STEP 6:Plot the performance plot
+- STEP 7:Evaluate the model with the testing data.
 
-Loading the dataset
+#### Name : SHARAN MJ
+#### RegNo : 212222240097
 
-### STEP 2:
-
-Split the dataset into training and testing
-
-### STEP 3:
-
-Create MinMaxScalar objects ,fit the model and transform the data.
-
-### STEP 4:
-
-Build the Neural Network Model and compile the model.
-
-### STEP 5:
-
-Train the model with the training data.
-
-### STEP 6:
-
-Plot the performance plot
-
-### STEP 7:
-
-Evaluate the model with the testing data.
-
-## PROGRAM
-### Name:SHARAN MJ
-### Register Number: 212222240097
+## Program:
 ```python
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-from google.colab import auth
-import gspread
-from google.auth import default
 
-auth.authenticate_user()
-creds, _ = default()
-gc = gspread.authorize(creds)
+df=pd.read_excel('/content/owndata.xlsx')
+df = df.astype({'input':'float'})
+df = df.astype({'output':'float'})
+df
 
-worksheet=gc.open('DL1').sheet1
-data1=worksheet.get_all_values()
+x=df[['input']].values
+y=df[['output']].values
+x
 
-dataset1=pd.DataFrame(data1[1:],columns=data1[0])
-dataset1=dataset1.astype({'x123':'float'})
-dataset1=dataset1.astype({'y123':'float'})
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.33,random_state=33)
+scalar=MinMaxScaler()
+scalar.fit(x_train)
 
-X12=dataset1[['x123']].values
-y12=dataset1[['y123']].values
+x_train1=scalar.transform(x_train)
+ai=Sequential([
+    Dense (units = 8, activation = 'relu'),
+    Dense (units = 10, activation = 'relu'),
+    Dense (units = 1)])
 
-x_train1,x_test1,y_train1,y_test1=train_test_split(X12,y12,test_size=0.33,random_state=43)
+ai.compile(optimizer='rmsprop',loss='mse')
+ai.fit(x_train1,y_train,epochs=2000)
 
-print("Shape of x_train1:",x_train1.shape)
-print("Shape of y_train:", y_train1.shape)
-
-scaler=MinMaxScaler()
-
-scaler.fit(x_train1)
-
-x_train1=scaler.transform(x_train1)
-
-ai_model=Sequential([
-    Dense(8,activation='relu',input_shape=[1]),
-    Dense(10,activation='relu'),
-    Dense(1)
-])
-
-ai_model.compile(optimizer='rmsprop',loss='mse')
-
-ai_model.fit(x_train1,y_train1,epochs=2000)
-
-loss_df=pd.DataFrame(ai_model.history.history)
+loss_df = pd.DataFrame(ai.history.history)
 loss_df.plot()
 
-x_test1=scaler.transform(x_test1)
+X_test1 = scalar.transform(x_test)
+ai.evaluate(X_test1,y_test)
 
-ai_model.evaluate(x_test1,y_test1)
-
-x_n1=[[6]]
-
-x_n1_1=scaler.transform(x_n1)
-
-ai_model.predict(x_n1_1)
-
+X_n1 = [[float(input('enter the value : '))]]
+X_n1_1 = scalar.transform(X_n1)
+a=ai.predict(X_n1_1)
+print('The predicted output : ',a)
 ```
-## Dataset Information
-<img src="image.png" width="300" height="250">
+### Output:
 
-## OUTPUT
-![output](image-4.png)
-### Training Loss Vs Iteration Plot
+#### Dataset:
+![Screenshot 2024-08-19 095045](https://github.com/user-attachments/assets/44b17a31-1662-4435-aa09-2c64557e55f7)
 
-<img src="image-1.png" width="400" height="300">
+#### Training Loss Vs Iteration Plot:
+![Screenshot 2024-08-19 095004](https://github.com/user-attachments/assets/fd9b0e7c-ccdf-4810-9d43-b002f19c8228)
 
-### Test Data Root Mean Squared Error
+#### Epoch:
+![image](https://github.com/user-attachments/assets/3467338a-5505-4699-98a5-3875daa72c9d)
 
-<img src="image-2.png" width="450" height="50" >
 
-### New Sample Data Prediction
+#### Test Data Root Mean Squared Error:
+![image](https://github.com/user-attachments/assets/fb2766e9-8d79-413e-bef8-a94bdadb8a1f)
 
-<img src="https://github.com/user-attachments/assets/871cbd39-19a0-49fb-8b1b-82ed73cc6dd9" width="450" height="50">
+#### New Sample Data Prediction:
+![image](https://github.com/user-attachments/assets/92dbd40a-7488-4aa3-b364-91311b99d591)
 
-## RESULT
-
-Thus the neural network regression model for the given dataset is developed successfully!
+### Result:
+Thus a neural network regression model for the given dataset is developed and the prediction for the given input is obtained accurately.
